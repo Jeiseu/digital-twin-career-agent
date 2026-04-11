@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { Message } from '@/lib/types';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -13,7 +14,6 @@ interface MessageListProps {
 export function MessageList({ messages, isLoading }: MessageListProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to latest message
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
@@ -52,7 +52,13 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
                     : 'bg-[#f5f5f5] text-[#0a0a0a] rounded-bl-none'
                 }`}
               >
-                <p className="text-sm">{message.content}</p>
+                {message.role === 'assistant' ? (
+                  <div className="text-sm prose prose-sm max-w-none">
+                    <ReactMarkdown>{message.content}</ReactMarkdown>
+                  </div>
+                ) : (
+                  <p className="text-sm">{message.content}</p>
+                )}
               </div>
               {message.role === 'user' && (
                 <Avatar className="h-8 w-8 mt-1">
