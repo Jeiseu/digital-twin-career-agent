@@ -21,17 +21,17 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
   }, [messages]);
 
   return (
-    <ScrollArea className="flex-1 max-h-[calc(100vh-200px)] p-4">
+    <ScrollArea className="flex-1 p-4">
       <div className="space-y-4">
         {messages.length === 0 ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="text-center text-slate-500">
+          <div className="flex items-center justify-center py-12">
+            <div className="text-center text-[#737373]">
               <p className="text-lg font-medium">Start a conversation</p>
               <p className="text-sm">Ask me anything about your career!</p>
             </div>
           </div>
         ) : (
-          messages.map((message, index) => (
+          messages.filter((m) => m.content).map((message, index) => (
             <div
               key={`${index}-${message.role}`}
               className={`flex gap-3 ${
@@ -40,7 +40,7 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
             >
               {message.role === 'assistant' && (
                 <Avatar className="h-8 w-8 mt-1">
-                  <AvatarFallback className="bg-blue-500 text-white text-xs font-bold">
+                  <AvatarFallback className="bg-[#0a0a0a] text-white text-xs font-bold">
                     AI
                   </AvatarFallback>
                 </Avatar>
@@ -48,15 +48,15 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
               <div
                 className={`max-w-xs px-4 py-2 rounded-lg ${
                   message.role === 'user'
-                    ? 'bg-blue-500 text-white rounded-br-none'
-                    : 'bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-50 rounded-bl-none'
+                    ? 'bg-[#0a0a0a] text-white rounded-br-none'
+                    : 'bg-[#f5f5f5] text-[#0a0a0a] rounded-bl-none'
                 }`}
               >
                 <p className="text-sm">{message.content}</p>
               </div>
               {message.role === 'user' && (
                 <Avatar className="h-8 w-8 mt-1">
-                  <AvatarFallback className="bg-slate-300 text-slate-700 text-xs font-bold">
+                  <AvatarFallback className="bg-[#d4d4d4] text-[#0a0a0a] text-xs font-bold">
                     YOU
                   </AvatarFallback>
                 </Avatar>
@@ -67,15 +67,15 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
         {isLoading && (
           <div className="flex gap-3 justify-start">
             <Avatar className="h-8 w-8 mt-1">
-              <AvatarFallback className="bg-blue-500 text-white text-xs font-bold">
+              <AvatarFallback className="bg-[#0a0a0a] text-white text-xs font-bold">
                 AI
               </AvatarFallback>
             </Avatar>
-            <div className="bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-50 px-4 py-2 rounded-lg rounded-bl-none">
+            <div className="bg-[#f5f5f5] text-[#0a0a0a] px-4 py-2 rounded-lg rounded-bl-none">
               <div className="flex gap-1">
-                <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-100"></div>
-                <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-200"></div>
+                <div className="w-2 h-2 bg-[#737373] rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-[#737373] rounded-full animate-bounce delay-100"></div>
+                <div className="w-2 h-2 bg-[#737373] rounded-full animate-bounce delay-200"></div>
               </div>
             </div>
           </div>

@@ -1,12 +1,17 @@
-'use client';
-
-import { ChatWindow } from '@/components/chat/ChatWindow';
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import { ChatWindow } from '@/components/chat/ChatWindow'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 p-4">
-      <ChatWindow />
-    </main>
-  );
-}
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
 
+      <main className="flex-1 flex items-center justify-center p-4">
+        <ChatWindow />
+      </main>
+
+      <Footer />
+    </div>
+  )
+}
