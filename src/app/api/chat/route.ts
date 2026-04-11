@@ -16,7 +16,16 @@ export async function POST(req: Request) {
       tools
     })
 
-    return result.toTextStreamResponse()
+    let fullText = ''
+    for await (const chunk of result.textStream) {
+      fullText += chunk
+    }
+
+    return new Response(fullText, {
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8'
+      }
+    })
   } catch (error) {
     console.error('Chat API error:', error)
     return new Response('Internal Server Error', { status: 500 })
