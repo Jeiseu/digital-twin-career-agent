@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link'
+import { Moon, Sun } from 'lucide-react'
+import { useTheme } from '@/lib/providers/ThemeProvider'
 
 const navLinks = [
   { label: 'Home', href: '#' },
@@ -7,9 +11,38 @@ const navLinks = [
   { label: 'Contact', href: '#' },
 ]
 
+function ThemeToggleButton() {
+  const { theme, toggleTheme, mounted } = useTheme()
+
+  if (!mounted) {
+    return (
+      <button
+        className="p-2 rounded-lg bg-slate-100 dark:bg-gray-900 text-slate-900 dark:text-cyan-400 hover:bg-slate-200 dark:hover:bg-gray-800 transition-all duration-300"
+        disabled
+      >
+        <Moon className="h-5 w-5" />
+      </button>
+    )
+  }
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="p-2 rounded-lg bg-slate-100 dark:bg-gray-900 text-slate-900 dark:text-cyan-400 hover:bg-slate-200 dark:hover:bg-gray-800 transition-all duration-300"
+      aria-label="Toggle theme"
+    >
+      {theme === 'dark' ? (
+        <Sun className="h-5 w-5" />
+      ) : (
+        <Moon className="h-5 w-5" />
+      )}
+    </button>
+  )
+}
+
 export default function Header() {
   return (
-    <header className="w-full bg-white border-b border-[#e5e5e5]">
+    <header className="w-full bg-white dark:bg-black border-b-2 border-blue-500 dark:border-cyan-500 transition-all duration-300">
       <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
         {/* Logo + Brand */}
         <div className="flex items-center gap-3">
@@ -17,9 +50,9 @@ export default function Header() {
           <img
             src="/g1logoupdated.png"
             alt="Digital Twin"
-            className="size-14 rounded-full bg-[#0a0a0a] object-contain flex-shrink-0 p-1"
+            className="size-14 rounded-full bg-slate-900 dark:bg-slate-100 object-contain flex-shrink-0 p-1"
           />
-          <span className="text-black text-lg font-semibold tracking-tight">
+          <span className="text-slate-900 dark:text-white text-lg font-semibold tracking-tight transition-colors duration-300">
             Digital Twin
           </span>
           {/* Online status */}
@@ -28,7 +61,7 @@ export default function Header() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex size-2 rounded-full bg-green-500" />
             </span>
-            <span className="text-sm text-black">24/7 Active</span>
+            <span className="text-sm text-slate-900 dark:text-white transition-colors duration-300">24/7 Active</span>
           </div>
         </div>
 
@@ -38,12 +71,15 @@ export default function Header() {
             <Link
               key={link.label}
               href={link.href}
-              className="btn-hover relative text-sm font-normal text-black hover:text-black transition-colors pb-0.5"
+              className="btn-hover relative text-sm font-normal text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-cyan-400 transition-colors duration-300 pb-0.5"
             >
               <span className="btn-label">{link.label}</span>
             </Link>
           ))}
         </nav>
+
+        {/* Theme Toggle */}
+        <ThemeToggleButton />
       </div>
     </header>
   )

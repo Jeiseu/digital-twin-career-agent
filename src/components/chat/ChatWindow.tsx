@@ -42,24 +42,24 @@ export function ChatWindow() {
   };
 
   return (
-    <Card className="w-full max-w-2xl max-h-[600px] flex flex-col shadow-lg">
-      <CardHeader className="border-b border-black">
-        <CardTitle className="text-2xl">Career Twin</CardTitle>
-        <p className="text-sm text-[#737373]">Powered by GPT-4 Turbo</p>
+    <Card className="w-full max-w-2xl h-[600px] flex flex-col shadow-lg bg-white border-2 border-blue-500 dark:bg-black dark:border-cyan-500 transition-all duration-300">
+      <CardHeader className="border-b-2 border-blue-500 dark:border-cyan-500 shrink-0 bg-white dark:bg-black transition-all duration-300">
+        <CardTitle className="text-2xl text-black dark:text-white transition-colors duration-300">Career Twin</CardTitle>
+        <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-300">Powered by GPT-4 Turbo</p>
       </CardHeader>
-      <CardContent className="flex-1 p-0 flex flex-col overflow-hidden">
+      <CardContent className="flex-1 p-0 flex flex-col overflow-hidden min-h-0">
         {cardsVisible && messages.length === 0 && (
-          <div className="p-4 grid grid-cols-3 gap-3">
+          <div className="p-4 grid grid-cols-3 gap-3 overflow-auto">
             {QUICK_ACTIONS.map((action) => (
               <button
                 key={action.label}
                 onClick={() => handleQuickAction(action.message)}
                 disabled={isLoading}
-                className="flex flex-col gap-2 p-4 rounded-xl border-2 border-[#e5e5e5] bg-white hover:border-[#0a0a0a] hover:shadow-md text-left transition-all disabled:opacity-50"
+                className="flex flex-col gap-2 p-4 rounded-xl border-2 border-blue-400 bg-white hover:border-blue-500 hover:shadow-md text-left transition-all disabled:opacity-50 dark:bg-gray-900 dark:border-cyan-500 dark:hover:border-cyan-400 dark:hover:shadow-lg"
               >
                 <span className="text-2xl">{action.icon}</span>
-                <span className="text-sm font-semibold text-[#0a0a0a] leading-tight">{action.label}</span>
-                <span className="text-xs text-[#737373] leading-snug">{action.description}</span>
+                <span className="text-sm font-semibold text-slate-900 dark:text-white leading-tight">{action.label}</span>
+                <span className="text-xs text-slate-600 dark:text-slate-300 leading-snug">{action.description}</span>
               </button>
             ))}
           </div>

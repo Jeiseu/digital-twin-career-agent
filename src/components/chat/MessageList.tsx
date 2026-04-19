@@ -21,11 +21,11 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
   }, [messages, isLoading]);
 
   return (
-    <ScrollArea className="flex-1 p-4">
+    <ScrollArea className="flex-1 min-h-0 p-4 bg-white dark:bg-black transition-all duration-300">
       <div className="space-y-4">
         {messages.length === 0 ? (
           <div className="flex items-center justify-center py-12">
-            <div className="text-center text-[#737373]">
+            <div className="text-center text-slate-500 dark:text-slate-400">
               <p className="text-lg font-medium">Start a conversation</p>
               <p className="text-sm">Ask me anything about your career!</p>
             </div>
@@ -40,7 +40,7 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
             >
               {message.role === 'assistant' && (
                 <Avatar className="h-8 w-8 mt-1">
-                  <AvatarFallback className="bg-[#0a0a0a] text-white text-xs font-bold">
+                  <AvatarFallback className="bg-slate-600 dark:bg-slate-700 text-white text-xs font-bold">
                     AI
                   </AvatarFallback>
                 </Avatar>
@@ -48,23 +48,23 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
               <div
                 className={`max-w-xs px-4 py-2 rounded-lg ${
                   message.role === 'user'
-                    ? 'bg-[#0a0a0a] text-white rounded-br-none'
-                    : 'bg-[#f5f5f5] text-[#0a0a0a] rounded-bl-none'
+                    ? 'bg-blue-500 dark:bg-cyan-500 text-white rounded-br-none transition-all duration-300'
+                    : 'bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded-bl-none transition-all duration-300'
                 }`}
               >
                 <p className="text-sm">
                     {message.content || (
                       <span className="flex gap-1 items-center h-4">
-                        <span className="w-2 h-2 bg-[#737373] rounded-full animate-bounce"></span>
-                        <span className="w-2 h-2 bg-[#737373] rounded-full animate-bounce delay-100"></span>
-                        <span className="w-2 h-2 bg-[#737373] rounded-full animate-bounce delay-200"></span>
+                        <span className="w-2 h-2 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce"></span>
+                        <span className="w-2 h-2 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce delay-100"></span>
+                        <span className="w-2 h-2 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce delay-200"></span>
                       </span>
                     )}
                   </p>
               </div>
               {message.role === 'user' && (
                 <Avatar className="h-8 w-8 mt-1">
-                  <AvatarFallback className="bg-[#d4d4d4] text-[#0a0a0a] text-xs font-bold">
+                  <AvatarFallback className="bg-slate-300 dark:bg-slate-600 text-slate-900 dark:text-white text-xs font-bold">
                     YOU
                   </AvatarFallback>
                 </Avatar>
