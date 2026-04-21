@@ -62,7 +62,10 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ conver
       return jsonError('Conversation already ended or not found', requestId, 409)
     }
 
-    await triggerFollowUpOnce(parsedParams.conversationId)
+    const followUpTriggered = await triggerFollowUpOnce(parsedParams.conversationId)
+    if (!followUpTriggered) {
+      return jsonError('Conversation end already in progress', requestId, 409)
+    }
 
     return jsonOk({ success: true, conversationId: parsedParams.conversationId, ended: true }, requestId)
   } catch (error) {
