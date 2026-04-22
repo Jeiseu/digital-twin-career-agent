@@ -13,7 +13,7 @@ import { checkRateLimit } from '@/lib/api/rate-limit'
 import { chatBodySchema } from '@/lib/api/schemas'
 import { jsonError, logError, logInfo, requestIdFromHeaders } from '@/lib/api/http'
 
-export const maxDuration = 30
+export const maxDuration = 60
 
 interface ChatMessage {
   role: "user" | "assistant" | "tool" | "system"
@@ -64,7 +64,7 @@ function buildFallbackReply(userText: string) {
     return 'Ciel\'s core stack includes Next.js, React, TypeScript, Node.js, PostgreSQL, and AI-powered web application development on Vercel.'
   }
 
-  if (hasAny('experience', 'background', 'about you', 'about ciel', 'profile')) {
+  if (hasAny('experience', 'background', 'about you', 'about Ciel', 'profile')) {
     return 'Ciel is a Full Stack Developer who builds modern AI-powered web applications, with strong experience in product-focused delivery across frontend and backend.'
   }
 
@@ -131,17 +131,20 @@ export async function POST(req: Request) {
     const messages = body.messages as unknown as ModelMessage[]
     const incomingConversationId = body.conversationId
     const conversationId = incomingConversationId && isUuid(incomingConversationId)
-      ? incomingConversationId
-      : await startConversation()
+  ? incomingConversationId
+  : await startConversation()
+console.log('Conversation ID:', conversationId)
 
     const userText = latestUserContent(messages)
     if (userText) {
-      await saveMessage({
-        conversationId,
-        role: 'user',
-        content: userText
-      })
-    }
+  console.log('Saving user message...', { conversationId, userText })
+  await saveMessage({
+    conversationId,
+    role: 'user',
+    content: userText
+  })
+  console.log('User message saved!')
+}
 
     const profile = await fetchOwnerProfile()
 
@@ -150,26 +153,30 @@ export async function POST(req: Request) {
     }
 
     const result = await streamText({
-      model: anthropic('claude-haiku-4-5-20251001'),
-      system: `${SYSTEM_PROMPT}\n\n${buildProfileContext(profile)}`,
-      messages,
-      tools,
-    })
+  model: anthropic('claude-haiku-4-5-20251001'),
+  system: `${SYSTEM_PROMPT}\n\n${buildProfileContext(profile)}`,
+  messages,
+  tools,
+})
 
-    let fullText = ''
-    for await (const chunk of result.textStream) {
-      fullText += chunk
-    }
+let fullText = ''
+for await (const chunk of result.textStream) {
+  fullText += chunk
+}
 
-    if (!fullText.trim()) {
-      return new Response('Empty response from model', { status: 500 })
-    }
+const reply = fullText.trim() || buildDbAwareFallbackReply(userText, profile)
 
-    const reply = fullText.trim() || buildDbAwareFallbackReply(userText, profile)
 await saveMessage({
   conversationId,
   role: 'assistant',
   content: reply
+})
+
+logInfo(requestId, 'chat.response', {
+  conversationId,
+  usedModelText: Boolean(fullText.trim()),
+  userChars: userText.length,
+  replyChars: reply.length
 })
 
 return new Response(reply, {
@@ -179,29 +186,13 @@ return new Response(reply, {
     'x-request-id': requestId
   }
 })
-
-    logInfo(requestId, 'chat.response', {
-      conversationId,
-      usedModelText: Boolean(fullText.trim()),
-      userChars: userText.length,
-      replyChars: reply.length
-    })
-
-    return new Response(reply, {
-      headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
-        'X-Conversation-Id': conversationId,
-        'x-request-id': requestId
-      }
-    })
   } catch (error) {
-    console.error('Chat API error:', error)
-    const errorMessage = error instanceof Error ? error.message : 'Internal Server Error'
+    console.error('FULL ERROR:', error)
+    console.error('ERROR MESSAGE:', (error as Error).message)
+    console.error('ERROR STACK:', (error as Error).stack)
     if (error instanceof ZodError) {
       return jsonError(error.issues[0]?.message ?? 'Invalid payload', requestId, 400)
     }
-    return new Response(errorMessage, { status: 500 })
-
     logError(requestId, 'chat.post', error)
     return jsonError('Internal Server Error', requestId, 500)
   }

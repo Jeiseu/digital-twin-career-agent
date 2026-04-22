@@ -16,23 +16,24 @@ export const tools = {
         .describe('The visitor reason for reaching out')
     }),
     execute: async ({ name, email, intent }: { name: string; email: string; intent: string }) => {
-      try {
-        const visitor = await saveVisitorContact({
-          name,
-          email,
-          intent: intent as VisitorIntent
-        })
-
-        return {
-          success: true,
-          visitorId: visitor.id,
-          message: `Thanks, ${name}. Ciel has your details and will follow up soon.`
-        }
-      } catch (error) {
-        console.error('saveContact tool error:', error)
-        return { success: false, message: 'I could not save your contact right now.' }
-      }
+  try {
+    console.log('saveContact tool called:', { name, email, intent })
+    const visitor = await saveVisitorContact({
+      name,
+      email,
+      intent: intent as VisitorIntent
+    })
+    console.log('saveContact success:', visitor)
+    return {
+      success: true,
+      visitorId: visitor.id,
+      message: `Thanks, ${name}. Ciel has your details and will follow up soon.`
     }
+  } catch (error) {
+    console.error('saveContact tool error:', error)
+    return { success: false, message: 'I could not save your contact right now.' }
+  }
+}
   },
 
   fetchProfile: {
@@ -52,8 +53,10 @@ export const tools = {
       visitorEmail: z.string().email().optional().describe('Optional visitor email')
     }),
     execute: async ({ visitorName, visitorEmail }: { visitorName: string; visitorEmail?: string }) => {
-      try {
-        const booking = await createBooking({ visitorName, visitorEmail })
+  try {
+    console.log('triggerBooking tool called:', { visitorName, visitorEmail })
+    const booking = await createBooking({ visitorName, visitorEmail })
+    console.log('triggerBooking success:', booking)
 
         return {
           success: true,
