@@ -26,7 +26,7 @@ export const tools = {
         return {
           success: true,
           visitorId: visitor.id,
-          message: `Thanks, ${name}. Dwight has your details and will follow up soon.`
+          message: `Thanks, ${name}. Ciel has your details and will follow up soon.`
         }
       } catch (error) {
         console.error('saveContact tool error:', error)
@@ -36,7 +36,7 @@ export const tools = {
   },
 
   fetchProfile: {
-    description: "Fetch Dwight's full profile when a visitor asks about his background or skills",
+    description: "Fetch Ciel's full profile when a visitor asks about his background or skills",
     inputSchema: z.object({
       placeholder: z.string().optional()
     }),
@@ -46,7 +46,7 @@ export const tools = {
   },
 
   triggerBooking: {
-    description: 'Trigger a meeting booking when a visitor wants to schedule time with Dwight',
+    description: 'Trigger a meeting booking when a visitor wants to schedule time with Ciel',
     inputSchema: z.object({
       visitorName: z.string().describe('The name of the visitor requesting a booking'),
       visitorEmail: z.string().email().optional().describe('Optional visitor email')
@@ -59,7 +59,7 @@ export const tools = {
           success: true,
           bookingId: booking.id,
           status: booking.status,
-          message: `Booking requested for ${visitorName}. Dwight will be in touch shortly.`
+          message: `Booking requested for ${visitorName}. Ciel will be in touch shortly.`
         }
       } catch (error) {
         console.error('triggerBooking tool error:', error)

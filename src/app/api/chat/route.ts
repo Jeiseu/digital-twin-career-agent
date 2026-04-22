@@ -41,35 +41,35 @@ function buildFallbackReply(userText: string) {
     words.some((word) => new RegExp(`\\b${word}\\b`, 'i').test(lowerText))
 
   if (hasWord('hi', 'hello', 'hey') || hasAny('good morning', 'good afternoon', 'good evening')) {
-    return 'Hi, thanks for reaching out. I can help with Dwight\'s background, tech stack, availability, and next steps for hiring or collaboration.'
+    return 'Hi, thanks for reaching out. I can help with Ciel\'s background, tech stack, availability, and next steps for hiring or collaboration.'
   }
 
   if (hasAny('@', 'email', 'contact', 'reach me', 'reach out')) {
-    return 'Thanks for sharing your contact details. I have saved them and Dwight will follow up soon.'
+    return 'Thanks for sharing your contact details. I have saved them and Ciel will follow up soon.'
   }
 
   if (hasAny('book', 'schedule', 'meeting', 'call', 'interview')) {
-    return 'Your booking request has been noted. Dwight will reach out shortly to confirm details.'
+    return 'Your booking request has been noted. Ciel will reach out shortly to confirm details.'
   }
 
   if (hasAny('hire', 'hiring', 'recruit', 'recruiter', 'opening', 'role')) {
-    return 'Great to connect. Dwight is open to full-time roles, freelance projects, and collaborations. If you share the role details and timeline, I can log your interest right away.'
+    return 'Great to connect. Ciel is open to full-time roles, freelance projects, and collaborations. If you share the role details and timeline, I can log your interest right away.'
   }
 
   if (hasAny('available', 'availability', 'open to work', 'open for')) {
-    return 'Dwight is currently available for full-time roles, freelance projects, and collaborations. If you share your preferred schedule, I can also log a booking request.'
+    return 'Ciel is currently available for full-time roles, freelance projects, and collaborations. If you share your preferred schedule, I can also log a booking request.'
   }
 
   if (hasAny('skill', 'stack', 'tech', 'technology')) {
-    return 'Dwight\'s core stack includes Next.js, React, TypeScript, Node.js, PostgreSQL, and AI-powered web application development on Vercel.'
+    return 'Ciel\'s core stack includes Next.js, React, TypeScript, Node.js, PostgreSQL, and AI-powered web application development on Vercel.'
   }
 
-  if (hasAny('experience', 'background', 'about you', 'about dwight', 'profile')) {
-    return 'Dwight is a Full Stack Developer who builds modern AI-powered web applications, with strong experience in product-focused delivery across frontend and backend.'
+  if (hasAny('experience', 'background', 'about you', 'about ciel', 'profile')) {
+    return 'Ciel is a Full Stack Developer who builds modern AI-powered web applications, with strong experience in product-focused delivery across frontend and backend.'
   }
 
   if (hasAny('project', 'portfolio', 'built', 'case study')) {
-    return 'Dwight has worked on modern full-stack and AI-powered applications using Next.js, TypeScript, and PostgreSQL. If you want, I can summarize relevant project experience for your use case.'
+    return 'Ciel has worked on modern full-stack and AI-powered applications using Next.js, TypeScript, and PostgreSQL. If you want, I can summarize relevant project experience for your use case.'
   }
 
   return 'Thanks for your message. Could you share what opportunity or collaboration you have in mind so I can help better?'
@@ -206,6 +206,7 @@ return new Response(reply, {
     return jsonError('Internal Server Error', requestId, 500)
   }
 }
+
 
 
 

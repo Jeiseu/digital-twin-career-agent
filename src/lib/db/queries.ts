@@ -43,13 +43,13 @@ export interface OwnerProfile {
 }
 
 export const DEFAULT_OWNER_PROFILE: OwnerProfile = {
-  name: 'Dwight Richard Mongaya',
+  name: 'Ciel',
   role: 'Full Stack Developer',
   skills: ['Next.js', 'React', 'TypeScript', 'Node.js', 'PostgreSQL', 'AI/ML', 'Vercel'],
   experience: 'Building modern full-stack and AI-powered applications',
   available_for: ['Full-time roles', 'freelance projects', 'collaborations'],
   summary:
-    'Dwight is a Full Stack Developer who builds modern AI-powered web applications with strong product-focused execution across frontend and backend.',
+    'Ciel is a Full Stack Developer who builds modern AI-powered web applications with strong product-focused execution across frontend and backend.',
   available: true,
   contact: 'via this chat'
 }
@@ -259,3 +259,4 @@ export async function endConversation(conversationId: string) {
 
   return Boolean(rows[0]?.id)
 }
+
