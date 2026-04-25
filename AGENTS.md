@@ -69,3 +69,18 @@ Visitor → Web UI / Phone Call
 ## Requirements Reference
 - Full product requirements: [prd.md](./prd.md)
 - Repository structure and overview: [readme.md](./readme.md)
+
+---
+
+## Team Members
+
+| Developer | LinkedIn | GitHub |
+|---|---|---|
+| Dwight Mongaya | [LinkedIn](https://www.linkedin.com/in/dwight-mongaya-9085552b4/) | [GitHub](https://github.com/DwightRTM) |
+| John Vincent | [LinkedIn](https://www.linkedin.com/in/jvcreyes) | [GitHub](https://github.com/Jeiseu) |
+| Julliene Almojera | [LinkedIn](https://www.linkedin.com/in/julliene-almojera-b73596381?utm_source=share_via&utm_content=profile&utm_medium=member_ios) | [GitHub](https://github.com/jalmojera) |
+| Jenesa Cabildo | [LinkedIn](https://ph.linkedin.com/in/jeya-cabildo) | [GitHub](https://github.com/jeneya-cabildo) |
+| Alkaeya De La Peña | [LinkedIn](https://www.linkedin.com/in/alkaeya-de-la-pe%C3%B1a-7a625a3b9/) | [GitHub](https://github.com/Alkaeya) |
+| Omayra Afrin | [LinkedIn](https://www.linkedin.com/in/omayara-afrin) | [GitHub](https://github.com/OmayaraAfrin) |
+| Christian Gem Raganit | [LinkedIn](https://www.linkedin.com/in/christian-gem-raganit-2b2366324?utm_source=share_via&utm_content=profile&utm_medium=member_android) | [GitHub](https://github.com/devichann) |
+| Ariana Siddayao | [LinkedIn](https://www.linkedin.com/in/ariana-siddayao-1b90343b8?utm_source=share_via&utm_content=profile&utm_medium=member_ios) | [GitHub](https://github.com/aria-na) |
