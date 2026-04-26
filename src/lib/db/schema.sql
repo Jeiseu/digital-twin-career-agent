@@ -44,12 +44,12 @@ CREATE TABLE IF NOT EXISTS owner_profile (
 INSERT INTO owner_profile (id, name, role, skills, experience, available_for, summary)
 VALUES (
   1,
-  'Dwight Richard Mongaya',
+  'Ciel',
   'Full Stack Developer',
   ARRAY['Next.js', 'React', 'TypeScript', 'Node.js', 'PostgreSQL', 'AI/ML', 'Vercel'],
   'Building modern full-stack and AI-powered applications',
   ARRAY['Full-time roles', 'freelance projects', 'collaborations'],
-  'Dwight is a Full Stack Developer who builds modern AI-powered web applications with strong product-focused execution across frontend and backend.'
+  'Ciel is a Full Stack Developer who builds modern AI-powered web applications with strong product-focused execution across frontend and backend.'
 )
 ON CONFLICT (id) DO NOTHING;
 
@@ -63,3 +63,4 @@ CREATE INDEX IF NOT EXISTS conversations_ended_at_idx ON conversations (ended_at
 CREATE INDEX IF NOT EXISTS messages_conversation_created_idx ON messages (conversation_id, created_at ASC);
 CREATE INDEX IF NOT EXISTS messages_created_at_idx ON messages (created_at DESC);
 CREATE INDEX IF NOT EXISTS bookings_requested_at_idx ON bookings (requested_at DESC);
+

@@ -12,6 +12,9 @@ const teams = {
       { name: 'John Vincent', linkedin: 'https://www.linkedin.com/in/jvcreyes', github: 'https://github.com/Jeiseu' },
       { name: 'Omayra Afrin', linkedin: 'https://www.linkedin.com/in/omayara-afrin', github: 'https://github.com/OmayaraAfrin' },
       { name: 'Andre Gavois', linkedin: 'https://www.linkedin.com/in/andre-gavois-b6b915400/', github: 'https://github.com/Yoshy88' }
+      { name: 'John Reyes', linkedin: 'https://www.linkedin.com/in/jvcreyes', github: 'https://github.com/Jeiseu' },
+      { name: 'Omayra Afreen', linkedin: 'https://linkedin.com', github: 'https://github.com' },
+      { name: 'Andre Gavois', linkedin: 'https://linkedin.com', github: 'https://github.com' }
     ]
   },
   frontend: {
@@ -20,6 +23,8 @@ const teams = {
       { name: 'Dwight Mongaya', linkedin: 'https://www.linkedin.com/in/dwight-mongaya-9085552b4/', github: 'https://github.com/DwightRTM' },
       { name: 'Christian Gem Raganit', linkedin: 'https://www.linkedin.com/in/christian-gem-raganit-2b2366324?utm_source=share_via&utm_content=profile&utm_medium=member_android', github: 'https://github.com/devichann' },
       { name: 'Julliene Almojera', linkedin: 'https://www.linkedin.com/in/julliene-almojera-b73596381?utm_source=share_via&utm_content=profile&utm_medium=member_ios', github: 'https://github.com/jalmojera' }
+      { name: 'Christian Raganit', linkedin: 'https://linkedin.com', github: 'https://github.com' },
+      { name: 'Juliene Almojera', linkedin: 'https://linkedin.com', github: 'https://github.com' }
     ]
   },
   backend: {
@@ -28,6 +33,9 @@ const teams = {
       { name: 'Ariana Siddayao', linkedin: 'https://www.linkedin.com/in/ariana-siddayao-1b90343b8?utm_source=share_via&utm_content=profile&utm_medium=member_ios', github: 'https://github.com/aria-na' },
       { name: 'Jenesa Cabildo', linkedin: 'https://ph.linkedin.com/in/jeya-cabildo', github: 'https://github.com/jeneya-cabildo' },
       { name: 'Alkaeya De La Peña', linkedin: 'https://www.linkedin.com/in/alkaeya-de-la-pe%C3%B1a-7a625a3b9/', github: 'https://github.com/Alkaeya' }
+      { name: 'Ariana Siddayao', linkedin: 'https://linkedin.com', github: 'https://github.com' },
+      { name: 'Jenesa Orquesta', linkedin: 'https://linkedin.com', github: 'https://github.com' },
+      { name: 'Alkaeya De la Pena', linkedin: 'https://linkedin.com', github: 'https://github.com' }
     ]
   }
 }

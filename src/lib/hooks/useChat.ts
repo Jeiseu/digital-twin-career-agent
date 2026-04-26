@@ -90,7 +90,7 @@ export function useChat({ api }: UseChatOptions) {
 
         if (!assistantMessage.trim()) {
           throw new Error('Empty response from API');
-          assistantMessage = 'Thanks for your message. I saved your request and Dwight will follow up shortly.';
+          assistantMessage = 'Thanks for your message. I saved your request and Ciel will follow up shortly.';
         }
 
         // Add assistant message to the state
@@ -130,3 +130,4 @@ export function useChat({ api }: UseChatOptions) {
     append,
   };
 }
+

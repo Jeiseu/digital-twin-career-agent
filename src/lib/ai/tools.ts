@@ -16,27 +16,28 @@ export const tools = {
         .describe('The visitor reason for reaching out')
     }),
     execute: async ({ name, email, intent }: { name: string; email: string; intent: string }) => {
-      try {
-        const visitor = await saveVisitorContact({
-          name,
-          email,
-          intent: intent as VisitorIntent
-        })
-
-        return {
-          success: true,
-          visitorId: visitor.id,
-          message: `Thanks, ${name}. Dwight has your details and will follow up soon.`
-        }
-      } catch (error) {
-        console.error('saveContact tool error:', error)
-        return { success: false, message: 'I could not save your contact right now.' }
-      }
+  try {
+    console.log('saveContact tool called:', { name, email, intent })
+    const visitor = await saveVisitorContact({
+      name,
+      email,
+      intent: intent as VisitorIntent
+    })
+    console.log('saveContact success:', visitor)
+    return {
+      success: true,
+      visitorId: visitor.id,
+      message: `Thanks, ${name}. Ciel has your details and will follow up soon.`
     }
+  } catch (error) {
+    console.error('saveContact tool error:', error)
+    return { success: false, message: 'I could not save your contact right now.' }
+  }
+}
   },
 
   fetchProfile: {
-    description: "Fetch Dwight's full profile when a visitor asks about his background or skills",
+    description: "Fetch Ciel's full profile when a visitor asks about his background or skills",
     inputSchema: z.object({
       placeholder: z.string().optional()
     }),
@@ -46,20 +47,22 @@ export const tools = {
   },
 
   triggerBooking: {
-    description: 'Trigger a meeting booking when a visitor wants to schedule time with Dwight',
+    description: 'Trigger a meeting booking when a visitor wants to schedule time with Ciel',
     inputSchema: z.object({
       visitorName: z.string().describe('The name of the visitor requesting a booking'),
       visitorEmail: z.string().email().optional().describe('Optional visitor email')
     }),
     execute: async ({ visitorName, visitorEmail }: { visitorName: string; visitorEmail?: string }) => {
-      try {
-        const booking = await createBooking({ visitorName, visitorEmail })
+  try {
+    console.log('triggerBooking tool called:', { visitorName, visitorEmail })
+    const booking = await createBooking({ visitorName, visitorEmail })
+    console.log('triggerBooking success:', booking)
 
         return {
           success: true,
           bookingId: booking.id,
           status: booking.status,
-          message: `Booking requested for ${visitorName}. Dwight will be in touch shortly.`
+          message: `Booking requested for ${visitorName}. Ciel will be in touch shortly.`
         }
       } catch (error) {
         console.error('triggerBooking tool error:', error)

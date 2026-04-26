@@ -18,7 +18,7 @@ export function ChatWindow() {
   };
 
   return (
-    <div className="w-full max-w-4xl h-screen sm:h-[600px] sm:max-h-[600px] flex flex-col rounded-none sm:rounded-2xl bg-white dark:bg-neutral-900 shadow-none sm:shadow-sm dark:sm:shadow-lg border-0 sm:border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+    <div id="chat-window" className="w-full max-w-4xl h-screen sm:h-[600px] sm:max-h-[600px] flex flex-col rounded-none sm:rounded-2xl bg-white dark:bg-neutral-900 shadow-none sm:shadow-sm dark:sm:shadow-lg border-0 sm:border border-neutral-200 dark:border-neutral-800 overflow-hidden">
       {/* Header */}
       <div className="flex-none px-4 sm:px-6 py-4 sm:py-5 border-b border-neutral-200 dark:border-neutral-800">
         <h1 className="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white tracking-tight">
