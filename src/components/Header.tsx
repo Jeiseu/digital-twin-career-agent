@@ -10,7 +10,8 @@ const teams = {
     title: 'AI Team',
     members: [
       { name: 'John Vincent', linkedin: 'https://www.linkedin.com/in/jvcreyes', github: 'https://github.com/Jeiseu' },
-      { name: 'Omayra Afrin', linkedin: 'https://www.linkedin.com/in/omayara-afrin', github: 'https://github.com/OmayaraAfrin' }
+      { name: 'Omayra Afrin', linkedin: 'https://www.linkedin.com/in/omayara-afrin', github: 'https://github.com/OmayaraAfrin' },
+      { name: 'Andre Gavois', linkedin: 'https://www.linkedin.com/in/andre-gavois-b6b915400/', github: 'https://github.com/Yoshy88' }
     ]
   },
   frontend: {
