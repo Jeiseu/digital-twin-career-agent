@@ -1,53 +1,6 @@
 'use client';
 
-import { memo } from 'react';
-
-const SUGGESTED_REPLIES: Record<string, string[]> = {
-  greeting: [
-    "Tell me about your experience",
-    "What are your key skills?",
-    "I'd like to book a meeting",
-    "I'm a recruiter looking for talent",
-  ],
-  skills: [
-    "What projects have you built?",
-    "Are you available for full-time roles?",
-    "I'd like to book a meeting",
-  ],
-  experience: [
-    "What tech stack do you use?",
-    "Are you open to freelance work?",
-    "I'd like to book a meeting",
-  ],
-  booking: [
-    "Yes, let's book a meeting",
-    "Tell me more about you first",
-    "What's your availability?",
-  ],
-  default: [
-    "Tell me more",
-    "I'd like to book a meeting",
-    "What are your skills?",
-    "Are you available?",
-  ],
-}
-
-function getSuggestions(lastMessage: string): string[] {
-  const lower = lastMessage.toLowerCase()
-  if (lower.includes('hi') || lower.includes('hello') || lower.includes('welcome')) {
-    return SUGGESTED_REPLIES.greeting
-  }
-  if (lower.includes('skill') || lower.includes('stack') || lower.includes('tech')) {
-    return SUGGESTED_REPLIES.skills
-  }
-  if (lower.includes('experience') || lower.includes('background') || lower.includes('project')) {
-    return SUGGESTED_REPLIES.experience
-  }
-  if (lower.includes('book') || lower.includes('meeting') || lower.includes('schedule')) {
-    return SUGGESTED_REPLIES.booking
-  }
-  return SUGGESTED_REPLIES.default
-}
+import { memo, useEffect, useState } from 'react';
 
 interface SuggestedRepliesProps {
   lastMessage: string
@@ -56,9 +9,43 @@ interface SuggestedRepliesProps {
 }
 
 export const SuggestedReplies = memo(({ lastMessage, onSelect, isLoading }: SuggestedRepliesProps) => {
-  if (isLoading) return null
+  const [suggestions, setSuggestions] = useState<string[]>([])
+  const [isFetching, setIsFetching] = useState(false)
 
-  const suggestions = getSuggestions(lastMessage)
+  useEffect(() => {
+    if (!lastMessage || isLoading) return
+
+    const fetchSuggestions = async () => {
+      setIsFetching(true)
+      try {
+        const res = await fetch('/api/suggestions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ lastMessage }),
+        })
+        const data = await res.json()
+        setSuggestions(data.suggestions ?? [])
+      } catch {
+        setSuggestions([])
+      } finally {
+        setIsFetching(false)
+      }
+    }
+
+    fetchSuggestions()
+  }, [lastMessage, isLoading])
+
+  if (isLoading || isFetching) {
+    return (
+      <div className="flex gap-2 px-4 sm:px-6 py-3">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="h-7 w-24 rounded-full bg-neutral-100 dark:bg-neutral-800 animate-pulse" />
+        ))}
+      </div>
+    )
+  }
+
+  if (suggestions.length === 0) return null
 
   return (
     <div className="flex flex-wrap gap-2 px-4 sm:px-6 py-3">
