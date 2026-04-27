@@ -91,7 +91,7 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
             <div className="text-center space-y-3">
               <div className="text-5xl">💼</div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
-                Welcome! I'm Ciel Smith, a Fullstack AI Developer.
+                Welcome! I'm Ciel, a Fullstack AI Developer.
               </h3>
               <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs mx-auto">
                 Ask me anything about my career, skills, or background
