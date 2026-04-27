@@ -4,31 +4,31 @@ import { memo } from 'react';
 
 const SUGGESTED_REPLIES: Record<string, string[]> = {
   greeting: [
-    "Tell me about Ciel's experience",
-    "What are Ciel's key skills?",
+    "Tell me about your experience",
+    "What are your key skills?",
     "I'd like to book a meeting",
     "I'm a recruiter looking for talent",
   ],
   skills: [
-    "What projects has Ciel built?",
-    "Is Ciel available for full-time roles?",
+    "What projects have you built?",
+    "Are you available for full-time roles?",
     "I'd like to book a meeting",
   ],
   experience: [
-    "What tech stack does Ciel use?",
-    "Is Ciel open to freelance work?",
+    "What tech stack do you use?",
+    "Are you open to freelance work?",
     "I'd like to book a meeting",
   ],
   booking: [
     "Yes, let's book a meeting",
-    "Tell me more about Ciel first",
-    "What's Ciel's availability?",
+    "Tell me more about you first",
+    "What's your availability?",
   ],
   default: [
     "Tell me more",
     "I'd like to book a meeting",
-    "What are Ciel's skills?",
-    "Is Ciel available?",
+    "What are your skills?",
+    "Are you available?",
   ],
 }
 
